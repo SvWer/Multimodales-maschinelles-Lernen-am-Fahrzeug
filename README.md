@@ -9,7 +9,7 @@ Das Vorgehen gliedert sich dabei in Folgende Schritte:
 4. Ampel-Detection mit Hilfe des pre-trained SSD-Algorithmus mit dem COCO-Datensatz
 
 
-#Installation vom LGSVL-Simulator
+<b>Installation vom LGSVL-Simulator</b>
 Damit der Simulator und die Map bearbeitet werden können, muss Unity3D als Editor installiert werden. Dazu UnityHub für Ubuntu herunterladen und von dort aus Unity 2019.3.3f oder neuer installieren. 
 Damit der Simulator ausgeführt werden kann muss Cuda zusammen mit dem neusten Treiber installiert werden. Dazu den Anweisungen der Cuda-Webseite folgen.
 Damit der Simulator über die PythonAPI genutzt werden kann, müssen noch ein paar weitere Dinge installiert werden:
@@ -55,3 +55,26 @@ Nachdem ROS installiert ist sollte ein Workspace erzeugt und ein paar Packages h
 13. $make
 14. $cd ../../..
 15. $catkin_make
+
+
+
+
+Modifikation des Simulators, damit dieser Ampeln als Ground-Truth-Daten  liefert.
+
+
+
+Sammeln von Daten über die ROS-Bridge
+Damit über die ROS-Bridge Daten gesammelt werden können, wird ein Skript benötigt, dass als Subscriber die Nachrichten vom Simulator empfängt und diese Daten dann abspeichert. Dazu muss der Ordner subscriber_node aus diesem Repo in den src-Ordner im Workspace kopiert werden. Danach muss im workspace erneut 
+
+  $catkin_make
+  
+aufgerufen werden. Wenn das gemacht ist, kann der Simulator gestartet werden. Auf der Webseite muss dann die modifizierte Map und ein Fahrzeug ausgewählt werden, dessen Sensoren so definiert sind, dass die gewünschten Daten geliefert werden. 
+Dann müssen in unterschiedlichen Terminals folgende Befehle eingegeben werden:
+1. $roscore
+2. $roslaunch rosbridge_server rosbridge_websocket.launch
+3. $roslaunch rosbridge_server rosbridge_websocket.launch
+
+Damit wird zuerst der Roscore gestartet. Der zweite Befehl startet die Bridge und der dritte Befehl den Subscriber, der die Daten dann abspeichert.
+
+
+Ampel-Detection mit Hilfe des pre-trained SSD-Algorithmus mit dem COCO-Datensatz
