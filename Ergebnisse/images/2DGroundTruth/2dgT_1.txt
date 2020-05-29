@@ -1,0 +1,177 @@
+[header: 
+  seq: 0
+  stamp: 
+    secs: 0
+    nsecs:         0
+  frame_id: ''
+id: 26168
+label: "TrafficLight"
+score: 1.0
+bbox: 
+  x: 937.8806762695312
+  y: 511.2235107421875
+  width: 4.8672871589660645
+  height: 10.154520034790039
+velocity: 
+  linear: 
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  angular: 
+    x: 0.0
+    y: 0.0
+    z: 0.0, header: 
+  seq: 0
+  stamp: 
+    secs: 0
+    nsecs:         0
+  frame_id: ''
+id: 36335
+label: "TrafficLight"
+score: 1.0
+bbox: 
+  x: 913.4951782226562
+  y: 427.14739990234375
+  width: 19.427030563354492
+  height: 38.251220703125
+velocity: 
+  linear: 
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  angular: 
+    x: 0.0
+    y: 0.0
+    z: 0.0, header: 
+  seq: 0
+  stamp: 
+    secs: 0
+    nsecs:         0
+  frame_id: ''
+id: 29641
+label: "TrafficLight"
+score: 1.0
+bbox: 
+  x: 898.1278076171875
+  y: 505.1581115722656
+  width: 6.010894775390625
+  height: 12.52853012084961
+velocity: 
+  linear: 
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  angular: 
+    x: 0.0
+    y: 0.0
+    z: 0.0, header: 
+  seq: 0
+  stamp: 
+    secs: 0
+    nsecs:         0
+  frame_id: ''
+id: 36398
+label: "TrafficLight"
+score: 1.0
+bbox: 
+  x: 861.4619750976562
+  y: 510.0466003417969
+  width: 4.334679126739502
+  height: 10.40602970123291
+velocity: 
+  linear: 
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  angular: 
+    x: 0.0
+    y: 0.0
+    z: 0.0, header: 
+  seq: 0
+  stamp: 
+    secs: 0
+    nsecs:         0
+  frame_id: ''
+id: 23942
+label: "TrafficLight"
+score: 1.0
+bbox: 
+  x: 1488.9410400390625
+  y: 327.06689453125
+  width: 45.722469329833984
+  height: 77.0692367553711
+velocity: 
+  linear: 
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  angular: 
+    x: 0.0
+    y: 0.0
+    z: 0.0, header: 
+  seq: 0
+  stamp: 
+    secs: 0
+    nsecs:         0
+  frame_id: ''
+id: 18
+label: "Jeep"
+score: 1.0
+bbox: 
+  x: 936.0554809570312
+  y: 548.9464721679688
+  width: 18.090530395507812
+  height: 15.997980117797852
+velocity: 
+  linear: 
+    x: 0.0640840381383896
+    y: 0.0
+    z: 0.0
+  angular: 
+    x: 0.0
+    y: 0.0
+    z: 1.33158055177773e-05, header: 
+  seq: 0
+  stamp: 
+    secs: 0
+    nsecs:         0
+  frame_id: ''
+id: 20
+label: "Sedan"
+score: 1.0
+bbox: 
+  x: 972.7028198242188
+  y: 550.2086791992188
+  width: 20.387990951538086
+  height: 13.247099876403809
+velocity: 
+  linear: 
+    x: 16.1877593994141
+    y: 0.0
+    z: 0.0
+  angular: 
+    x: 0.0
+    y: 0.0
+    z: -0.224664270877838, header: 
+  seq: 0
+  stamp: 
+    secs: 0
+    nsecs:         0
+  frame_id: ''
+id: 22
+label: "SchoolBus"
+score: 1.0
+bbox: 
+  x: 1028.7469482421875
+  y: 544.1923217773438
+  width: 83.3920669555664
+  height: 82.99246215820312
+velocity: 
+  linear: 
+    x: 10.403844833374
+    y: 0.0
+    z: 0.0
+  angular: 
+    x: 0.0
+    y: 0.0
+    z: 0.186487853527069]
