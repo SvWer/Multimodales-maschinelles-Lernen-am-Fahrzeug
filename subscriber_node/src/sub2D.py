@@ -30,17 +30,17 @@ def alles_callback(msg2d, msg3d, msgdepth, msgSeg, msgMain, lid):
   
   depth = np.fromstring(msgdepth.data, np.uint8)
   image_np = cv2.imdecode(depth, 0)
-  cv2.imwrite(image_path+"depth_img/"+"depth_"+ str(localI) +".jpg", image_np)
+  cv2.imwrite(image_path+"depth_img/"+"depth_"+ str(localI) +".png", image_np)
   
   #Save segmentation image
   segm = np.fromstring(msgSeg.data, np.uint8)
   image_np = cv2.imdecode(segm, 1)
-  cv2.imwrite(image_path+"seg_img/"+"segm_"+ str(localI) +".jpg", image_np)
+  cv2.imwrite(image_path+"seg_img/"+"segm_"+ str(localI) +".png", image_np)
   
    #Save Main image
   main = np.fromstring(msgMain.data, np.uint8)
   image_np = cv2.imdecode(main, -1)
-  cv2.imwrite(image_path+"main_img/"+"main_"+ str(localI) +".jpg", image_np)
+  cv2.imwrite(image_path+"main_img/"+"main_"+ str(localI) +".png", image_np)
   
   #Save 2D ground Truth
   f2D = open(image_path+"2DGroundTruth/"+"2dgT_"+str(localI)+".txt", "a")
