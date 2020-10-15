@@ -10,6 +10,7 @@ Das Vorgehen gliedert sich dabei in Folgende Schritte:
 
 
 <b>Installation vom LGSVL-Simulator</b>
+
 Damit der Simulator und die Map bearbeitet werden können, muss Unity3D als Editor installiert werden. Dazu UnityHub für Ubuntu herunterladen und von dort aus Unity 2019.3.3f oder neuer installieren. 
 Damit der Simulator ausgeführt werden kann muss Cuda zusammen mit dem neusten Treiber installiert werden. Dazu den Anweisungen der Cuda-Webseite folgen.
 Damit der Simulator über die PythonAPI genutzt werden kann, müssen noch ein paar weitere Dinge installiert werden:
@@ -59,22 +60,29 @@ Nachdem ROS installiert ist sollte ein Workspace erzeugt und ein paar Packages h
 
 
 
-Modifikation des Simulators, damit dieser Ampeln als Ground-Truth-Daten  liefert.
+<b>Modifikation des Simulators, damit dieser Ampeln als Ground-Truth-Daten  liefert.</b>
 
 
 
-Sammeln von Daten über die ROS-Bridge
+<b>Sammeln von Daten über die ROS-Bridge</b>
+
 Damit über die ROS-Bridge Daten gesammelt werden können, wird ein Skript benötigt, dass als Subscriber die Nachrichten vom Simulator empfängt und diese Daten dann abspeichert. Dazu muss der Ordner subscriber_node aus diesem Repo in den src-Ordner im Workspace kopiert werden. Danach muss im workspace erneut 
 
   $catkin_make
   
-aufgerufen werden. Wenn das gemacht ist, kann der Simulator gestartet werden. Auf der Webseite muss dann die modifizierte Map und ein Fahrzeug ausgewählt werden, dessen Sensoren so definiert sind, dass die gewünschten Daten geliefert werden. 
+aufgerufen werden. Wenn das gemacht ist, kann der Simulator gestartet werden. 
 Dann müssen in unterschiedlichen Terminals folgende Befehle eingegeben werden:
 1. $roscore
 2. $roslaunch rosbridge_server rosbridge_websocket.launch
-3. $roslaunch rosbridge_server rosbridge_websocket.launch
+3. $rosrun subscriber_node sub2D.py
 
 Damit wird zuerst der Roscore gestartet. Der zweite Befehl startet die Bridge und der dritte Befehl den Subscriber, der die Daten dann abspeichert.
+Auf der Webseite muss dann die modifizierte Map und ein Fahrzeug ausgewählt werden, dessen Sensoren so definiert sind, dass die gewünschten Daten geliefert werden. 
 
 
-Ampel-Detection mit Hilfe des pre-trained SSD-Algorithmus mit dem COCO-Datensatz
+
+<b>Ampel-Detection mit Hilfe des pre-trained SSD-Algorithmus mit dem COCO-Datensatz</b>
+
+----Hier noch Einfügen: Anleitung, was man alles für den pre-trained SSD benötigt -----
+
+Im Ordner SSD_Dateien befinden sich verschiedene Algorithmen, die den SSD alleine oder mit Maske anwenden. Dabei ist zu beachten, dass die Maske teilweise vor, nach und während dem SSD ausgeführt wird. 
