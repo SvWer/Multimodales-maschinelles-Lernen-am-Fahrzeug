@@ -1,0 +1,24 @@
+[{"type": "Color Camera", "name": "Main Camera",
+            "params": {"Width": 720, "Height": 480, "Frequency": 15, "JpegQuality": 75, "FieldOfView": 60, "MinDistance": 0.1, "MaxDistance": 500, "Topic": "/simulator/main_camera/compressed"},
+            "transform": {"x": 0, "y": 1.7, "z": -0.2, "pitch": 0, "yaw": 0, "roll": 0}
+  },
+  {"type": "Depth Camera", "name": "Depth Camera",
+            "params": { "Width": 720, "Height": 480, "Frequency": 15, "JpegQuality": 75, "FieldOfView": 60, "MinDistance": 0.1, "MaxDistance": 300, "Topic": "/simulator/depth_camera/compressed"},
+            "transform": { "x": 0, "y": 1.7, "z": -0.2, "pitch": 0, "yaw": 0, "roll": 0}
+  },
+  {"type": "Segmentation Camera", "name": "Segmentation Camera",
+            "params": { "Width": 720, "Height": 480, "Frequency": 15, "FieldOfView": 60, "MinDistance": 0.1, "MaxDistance": 500, "Topic": "/simulator/segmentation_camera/compressed" },
+            "transform": { "x": 0, "y": 1.7, "z": -0.2, "pitch": 0, "yaw": 0, "roll": 0 }
+  },
+  {"type": "3D Ground Truth", "name": "3D Ground Truth",
+            "params": { "Frequency": 15,  "Topic": "/simulator/ground_truth/3d_detections" },
+            "transform": { "x": 0, "y": 1.975314, "z": -0.3679201, "pitch": 0, "yaw": 0, "roll": 0 }
+  },
+  {"type": "2D Ground Truth", "name": "2D Ground Truth",
+            "params": { "Frequency": 15,  "Topic": "/simulator/ground_truth/2d_detections" },
+            "transform": { "x": 0, "y": 1.7, "z": -0.2, "pitch": 0, "yaw": 0, "roll": 0 }
+  },
+  {"type": "Keyboard Control", "name": "Keyboard Car Control"
+  },
+  {"type": "Wheel Control", "name": "Wheel Car Control"},{"type": "Vehicle Control", "name": "Apollo Car Control",
+            "params": {"Topic": "/apollo/control"} }]
