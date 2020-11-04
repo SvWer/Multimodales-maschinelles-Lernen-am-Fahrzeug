@@ -143,7 +143,7 @@ def calcHeights(data, number):
                 heights[y+2][x+1] = 1
                 heights[y+2][x+2] = 1
     #Save Mask-Image
-    #matplotlib.image.imsave(SSD_PATH+'Masks/' + 'heights2_'+number+".jpg", heights)
+    matplotlib.image.imsave(SSD_PATH+'Masks/' + 'mask_'+number+".jpg", heights)
     return heights
 
 def perfomMask(img, img_path, pix):

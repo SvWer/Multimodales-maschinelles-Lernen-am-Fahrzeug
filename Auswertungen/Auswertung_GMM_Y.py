@@ -59,7 +59,7 @@ dataSet_path = '/home/sven/Dokumente/Sven/Dateien/images/'
 #dataSet_path = '/home/sven/Dokumente/Sven/Dateien/Neue_Daten007_813/'
 #dataSet_path = '/home/sven/Dokumente/Sven/Dateien/Neue_Daten008_3284/'
 #dataSet_path = '/home/sven/Dokumente/Sven/Dateien/Test_Daten_001/'
-json_path = dataSet_path + 'SSD_Detections/dataAfterMask.json'
+json_path = dataSet_path + 'SSD_Detections/dataGMM_Height.json'
 main_path = "main_img/"
 gT_path = '2DGroundTruth/2dgT_'
 
@@ -347,11 +347,8 @@ def compareBoxes(ssd, gt, threshold, cnt_truedetection_frame, cnt_false_detectio
             cnt_false_detection += 1
             cnt_false_detection_frame += 1
     return cnt_truedetection_frame, cnt_false_detection_frame, cnt_misdetection_frame
-    
-    
-    
-def do_something(GTData, j_path, number): 
-    
+
+def do_something(GTData, j_path, number):    
     #GTData = loadAllGT()
     #Load Json File from SSD
     SSDTrafficLights, normalSSDClassCount = loadSSDData(j_path, len(GTData), sSDClassCount)
@@ -433,7 +430,7 @@ def do_something(GTData, j_path, number):
     #plt.title('Using the normal picture')
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig(dataSet_path+'SSD_After_graphen'+number+'.png')
+    plt.savefig(dataSet_path+'SSD_GMM_Y_graphen_'+number+'.png')
     plt.close()
     
     '''
@@ -454,18 +451,17 @@ def do_something(GTData, j_path, number):
     #plt.title('Normal image')
     ax.axis('off')
     plt.subplots_adjust(left=0.16, bottom=0.1, right=0.84,  top=0.9, wspace=0.2, hspace=0.74)
-    plt.savefig(dataSet_path+"SSD_After_table"+number+".png")
+    plt.savefig(dataSet_path+'SSD_GMM_Y_table_'+number+'.png')
     plt.close()
     
     return tableData
-    
     
     
 if __name__ == "__main__":
   GTData = loadAllGT()
   allData = []
   count = [ "0.07", "0.08", "0.09", "0.10", "0.11", "0.12", "0.13", "0.14", "0.15", "0.16", "0.17", "0.18", "0.19", "0.20", "0.21", "0.22", "0.23"]
-  json_path = dataSet_path + 'SSD_Detections/dataAfterMask'
+  json_path = dataSet_path + 'SSD_Detections/dataGMM_Y_'
   for i in count:
     allData.append(do_something(GTData, json_path + i + '.json', i))
   print("Shape allData: ", np.shape(allData))
@@ -491,7 +487,7 @@ if __name__ == "__main__":
     #nimm eine bestimmte Zeile: hier threshold = 0.4
     precision.append(p)
   precision = np.asarray(precision)
-  print(precision)
+  #print(precision)
   precision = precision.transpose()
   fig, ax = plt.subplots(1)
   ax.grid(True)
@@ -500,8 +496,6 @@ if __name__ == "__main__":
   ax.legend(loc="lower left", frameon=False)
   ax.set_title("Precision")
   plt.show()
-  plt.close()
-  
   
   t = np.asarray(t)
   t = t.transpose()

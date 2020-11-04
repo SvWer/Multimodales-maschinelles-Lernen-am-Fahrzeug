@@ -48,12 +48,12 @@ category_index = label_map_util.create_category_index(categories)
 
 #load image helper function
 def load_image_into_numpy_array(image):
-    (im_width, im_height) = image.size
-    return np.array(image.getdata()).reshape((im_height, im_width, 3)).astype(np.uint8)
+  (im_width, im_height) = image.size
+  return np.array(image.getdata()).reshape((im_height, im_width, 3)).astype(np.uint8)
     
 def load_image_into_numpy_array1(image):
-    (im_width, im_height) = image.size
-    return np.array(image.getdata()).reshape((im_height, im_width, 1)).astype(np.uint8)
+  (im_width, im_height) = image.size
+  return np.array(image.getdata()).reshape((im_height, im_width, 1)).astype(np.uint8)
     
     
 PATH = '/home/sven/Dokumente/Sven/Dateien/images/'
@@ -105,65 +105,65 @@ config = tf.compat.v1.ConfigProto(gpu_options=gpu_options)
     Return:    Angle between Pixelvalue and half of the height
 '''
 def getAngle(y):
-    return 30/240 *(y- 480/2)
+  return 30/240 *(y- 480/2)
 
 def calcHeights(data, number):
-    heights = np.zeros(shape=(480, 720))
-    #for every Pixel: First Calculate Angle, then height from camera.
-    for y in range(2, len(data)-2):
-        for x in range(2, len(data[0])-2):
-            alpha = getAngle(y)
-            d = 1/(pow(data[y][x]/255, 10) * (1-float(far)/float(near))) - float(far)/(float(near)-float(far))
-            h = np.sin(math.radians(alpha)) * d
-            #Create Mask if height is between 2.5 and 6 and it is not as far away as 40 and all 15 pixel arround, so it maybe works better
-            if h>2.5 and h < 6 and d < 40:
-                heights[y-2][x-2] = 1
-                heights[y-2][x-1] = 1
-                heights[y-2][x] = 1
-                heights[y-2][x+1] = 1
-                heights[y-2][x+2] = 1
-                heights[y-1][x-2] = 1
-                heights[y-1][x-1] = 1
-                heights[y-1][x] = 1
-                heights[y-1][x+1] = 1
-                heights[y-1][x+2] = 1
-                heights[y][x-2] = 1
-                heights[y][x-1] = 1
-                heights[y][x] = 1
-                heights[y][x+1] = 1
-                heights[y][x+2] = 1
-                heights[y+1][x-2] = 1
-                heights[y+1][x-1] = 1
-                heights[y+1][x] = 1
-                heights[y+1][x+1] = 1
-                heights[y+1][x+2] = 1
-                heights[y+2][x-2] = 1
-                heights[y+2][x-1] = 1
-                heights[y+2][x] = 1
-                heights[y+2][x+1] = 1
-                heights[y+2][x+2] = 1
+  heights = np.zeros(shape=(480, 720))
+  #for every Pixel: First Calculate Angle, then height from camera.
+  for y in range(2, len(data)-2):
+    for x in range(2, len(data[0])-2):
+      alpha = getAngle(y)
+      d = 1/(pow(data[y][x]/255, 10) * (1-float(far)/float(near))) - float(far)/(float(near)-float(far))
+      h = np.sin(math.radians(alpha)) * d
+      #Create Mask if height is between 2.5 and 6 and it is not as far away as 40 and all 15 pixel arround, so it maybe works better
+      if h>2.5 and h < 6 and d < 40:
+        heights[y-2][x-2] = 1
+        heights[y-2][x-1] = 1
+        heights[y-2][x] = 1
+        heights[y-2][x+1] = 1
+        heights[y-2][x+2] = 1
+        heights[y-1][x-2] = 1
+        heights[y-1][x-1] = 1
+        heights[y-1][x] = 1
+        heights[y-1][x+1] = 1
+        heights[y-1][x+2] = 1
+        heights[y][x-2] = 1
+        heights[y][x-1] = 1
+        heights[y][x] = 1
+        heights[y][x+1] = 1
+        heights[y][x+2] = 1
+        heights[y+1][x-2] = 1
+        heights[y+1][x-1] = 1
+        heights[y+1][x] = 1
+        heights[y+1][x+1] = 1
+        heights[y+1][x+2] = 1
+        heights[y+2][x-2] = 1
+        heights[y+2][x-1] = 1
+        heights[y+2][x] = 1
+        heights[y+2][x+1] = 1
+        heights[y+2][x+2] = 1
     #Save Mask-Image
     #matplotlib.image.imsave(SSD_PATH+'Masks/' + 'heights2_'+number+".jpg", heights)
     return heights
 
 def perfomMask(img, img_path, pix):
-    #from imageName get the number for depth image
-    number = img_path.split('/')[8].split('_')[1].split('.')[0]
-    #image = Image.open(PATH_TO_DEPTH_IMAGES+'depth_'+number+'.jpg')
-    image = Image.open(PATH_TO_DEPTH_IMAGES+'depth_'+number+'.png')
-    depth_img = np.asarray(image)
-    mask = calcHeights(depth_img, number)
-    
-    new_img = np.empty([len(depth_img), len(depth_img[0]), 3]).astype(np.uint8)
-    for x in range(len(mask)):
-        for y in range(len(mask[0])):
-            if mask[x][y] == 1:
-                new_img[x][y] = img[x][y]
-            else:
-                new_img[x][y] = pix
-    #im_rgb = cv2.cvtColor(new_img, cv2.COLOR_BGR2RGB)
-    #cv2.imwrite(SSD_PATH + 'Masks/masked_'+number+'.jpg', im_rgb);	
-    return new_img
+  #from imageName get the number for depth image
+  number = img_path.split('/')[8].split('_')[1].split('.')[0]
+  #image = Image.open(PATH_TO_DEPTH_IMAGES+'depth_'+number+'.jpg')
+  image = Image.open(PATH_TO_DEPTH_IMAGES+'depth_'+number+'.png')
+  depth_img = np.asarray(image)
+  mask = calcHeights(depth_img, number)
+  
+  new_img = np.empty([len(depth_img), len(depth_img[0]), 3]).astype(np.uint8)
+  for x in range(len(mask)):
+    for y in range(len(mask[0])):
+      if mask[x][y] == 1:
+        new_img[x][y] = img[x][y]
+      else:
+        new_img[x][y] = pix
+  #im_rgb = cv2.cvtColor(new_img, cv2.COLOR_BGR2RGB)
+  #cv2.imwrite(SSD_PATH + 'Masks/masked_'+number+'.jpg', im_rgb);	
+  return new_img
     
 def performSSDMask(PATHS, output_path, json_dic, json_path):	 
   with detection_graph.as_default():

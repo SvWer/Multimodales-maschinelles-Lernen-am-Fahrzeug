@@ -59,7 +59,7 @@ dataSet_path = '/home/sven/Dokumente/Sven/Dateien/images/'
 #dataSet_path = '/home/sven/Dokumente/Sven/Dateien/Neue_Daten007_813/'
 #dataSet_path = '/home/sven/Dokumente/Sven/Dateien/Neue_Daten008_3284/'
 #dataSet_path = '/home/sven/Dokumente/Sven/Dateien/Test_Daten_001/'
-json_path = dataSet_path + 'SSD_Detections/dataOwnNeu.json'
+json_path = dataSet_path + 'SSD_Detections/dataGMM.json'
 main_path = "main_img/"
 gT_path = '2DGroundTruth/2dgT_'
 
@@ -349,11 +349,11 @@ def compareBoxes(ssd, gt, threshold, cnt_truedetection_frame, cnt_false_detectio
     return cnt_truedetection_frame, cnt_false_detection_frame, cnt_misdetection_frame
 
 
-if __name__ == "__main__":
+def do_something(GTData, j_path, number): 
     
-    GTData = loadAllGT()
+    #GTData = loadAllGT()
     #Load Json File from SSD
-    SSDTrafficLights, normalSSDClassCount = loadSSDData(json_path, len(GTData), sSDClassCount)
+    SSDTrafficLights, normalSSDClassCount = loadSSDData(j_path, len(GTData), sSDClassCount)
 
     GTAmpel = gtClassCount['car']
     
@@ -369,6 +369,10 @@ if __name__ == "__main__":
     threshToPlot = []
     
     tableData = []
+    global cnt_truedetection
+    global ssd_trafLights
+    global cnt_false_detection
+    global cnt_misdetection
     
     tpr = []
     fp = []
@@ -428,7 +432,7 @@ if __name__ == "__main__":
     #plt.title('Using the normal picture')
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig(dataSet_path+'SSD_GMM_graphen.png')
+    plt.savefig(dataSet_path+'SSD_GMM_graphen_'+number+'.png')
     plt.close()
     
     '''
@@ -449,6 +453,83 @@ if __name__ == "__main__":
     #plt.title('Normal image')
     ax.axis('off')
     plt.subplots_adjust(left=0.16, bottom=0.1, right=0.84,  top=0.9, wspace=0.2, hspace=0.74)
-    plt.savefig(dataSet_path+"SSD_GMM_table.png")
+    plt.savefig(dataSet_path+"SSD_GMM_table_"+number+".png")
     plt.close()
+    
+    return tableData
+    
+    
+if __name__ == "__main__":
+  GTData = loadAllGT()
+  allData = []
+  count = [ "0.07", "0.08", "0.09", "0.10", "0.11", "0.12", "0.13", "0.14", "0.15", "0.16", "0.17", "0.18", "0.19", "0.20", "0.21", "0.22", "0.23"]
+  json_path = dataSet_path + 'SSD_Detections/dataGMM_'
+  for i in count:
+    allData.append(do_something(GTData, json_path + i + '.json', i))
+  print("Shape allData: ", np.shape(allData))
+  
+  count2 = [ 0.07, 0.08, 0.09, 0.10, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17, 0.18, 0.19, 0.20, 0.21, 0.22, 0.23]
+  lab = ["0.01", "0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9"]
+  precision = []
+  
+  t = []
+  m = []
+  missed = []
+  #gehe über alle oberen Grenzen
+  for d in allData:
+    p = []
+    m1 = []
+    m2 = []
+    t1 = []
+    for k in d:
+      p.append( k[3] / ( k[3] + k[5]) )
+      m1.append(k[5])
+      t1.append(k[3])
+      m2.append(k[4])
+      
+    t.append(t1)
+    missed.append(m2)
+    m.append(m1)
+    #nimm eine bestimmte Zeile: hier threshold = 0.4
+    precision.append(p)
+  precision = np.asarray(precision)
+  print(precision)
+  precision = precision.transpose()
+  fig, ax = plt.subplots(1)
+  ax.grid(True)
+  for p in range(3, len(precision)-1):
+    ax.plot(count2, precision[p], label=lab[p])
+  ax.legend(loc="lower left", frameon=False)
+  ax.set_title("Precision")
+  plt.show()
+  plt.close()
+  
+  
+  t = np.asarray(t)
+  t = t.transpose()
+  m = np.asarray(m)
+  m = m.transpose()
+  missed = np.asarray(missed)
+  missed = missed.transpose()
+  
+  fig, ax = plt.subplots(1,3, figsize=(10.4, 3.8))
+  ax[0].grid(True)
+  for det in range(3, len(t)-1):
+    ax[0].plot(count2, t[det], label=lab[det])
+  ax[0].legend(loc="upper left", frameon=False)
+  ax[0].set_title('true-detections')
+  
+  ax[1].grid(True)
+  for det in range(3, len(m)-1):
+    ax[1].plot(count2, m[det], label=lab[det])
+  ax[1].legend(loc="upper left", frameon=False)
+  ax[1].set_title('mis-detections')
+  
+  ax[2].grid(True)
+  for det in range(3, len(m)-1):
+    ax[2].plot(count2, missed[det], label=lab[det])
+  ax[2].legend(loc="upper left", frameon=False)
+  ax[2].set_title('missed-detections')
+  
+  plt.show()
     
