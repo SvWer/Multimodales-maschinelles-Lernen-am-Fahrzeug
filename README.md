@@ -122,14 +122,14 @@ Auf der Webseite muss dann die modifizierte Map und ein Fahrzeug ausgewählt wer
 Bevor allerdeing die Daten gesammelt werden können. muss die entsprechende Ordnerstruktur gegeben sein. Dabei sind manche Ordner davon Abhängig, welche Sensoren für das Fahrzeug verwendet werden und welche Eventhandler in Sub2D.py definiert werden.
 
 --Dateien
-   --|
-   --|-- 2DGrountTruth
-   --|-- 3DGroundTruth
-   --|-- SSD_Detections
-   --|-- depth_img
-   --|-- lidar
-   --|-- main_img
-   --|-- seg_img
+     |
+     |-- 2DGrountTruth
+     |-- 3DGroundTruth
+     |-- SSD_Detections
+     |-- depth_img
+     |-- lidar
+     |-- main_img
+     |-- seg_img
 
 
 
@@ -141,4 +141,5 @@ Anschließend kann der SSD verwendet werden. Dazu wurde in dieser Arbeit die Skr
 
 
 <b> Analyse der Ergebnisse</b>
+
 Nachdem der SSD ausgeführt wurde, steht eine json-Datei zur Verfügung, in der alle Detektionen enthalten sind. Wurde die Ordnerstruktur beim Sammeln der Daten entsprechend angelegt, können nun die Skripte im Ordner Auswertungen ausgeführt werden. Diese analysieren abhängig vom jeweiligen SSD-Algorithmus die Ergebnisse und erzeugen dabei die entsprechenden Diagramme und Tabellen.
