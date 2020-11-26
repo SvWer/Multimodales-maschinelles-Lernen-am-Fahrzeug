@@ -119,10 +119,26 @@ Dann müssen in unterschiedlichen Terminals folgende Befehle eingegeben werden:
 Damit wird zuerst der Roscore gestartet. Der zweite Befehl startet die Bridge und der dritte Befehl den Subscriber, der die Daten dann abspeichert.
 Auf der Webseite muss dann die modifizierte Map und ein Fahrzeug ausgewählt werden, dessen Sensoren so definiert sind, dass die gewünschten Daten geliefert werden. 
 
+Bevor allerdeing die Daten gesammelt werden können. muss die entsprechende Ordnerstruktur gegeben sein. Dabei sind manche Ordner davon Abhängig, welche Sensoren für das Fahrzeug verwendet werden und welche Eventhandler in Sub2D.py definiert werden.
+
+--Dateien
+   --|
+   --|-- 2DGrountTruth
+   --|-- 3DGroundTruth
+   --|-- SSD_Detections
+   --|-- depth_img
+   --|-- lidar
+   --|-- main_img
+   --|-- seg_img
+
 
 
 <b>Ampel-Detection mit Hilfe des pre-trained SSD-Algorithmus mit dem COCO-Datensatz</b>
 
-----Hier noch Einfügen: Anleitung, was man alles für den pre-trained SSD benötigt -----
+Um den SSD, wie hier verwendet, nutzen zu können, muss die Tensorflow object detection API installiert werden. Zusätzlich muss der vortrainierte SSD auf dem Tensorflow Model Zoo gedownloaded werden und in die object detection API integriert werden. 
 
-Im Ordner SSD_Dateien befinden sich verschiedene Algorithmen, die den SSD alleine oder mit Maske anwenden. Dabei ist zu beachten, dass die Maske teilweise vor, nach und während dem SSD ausgeführt wird. 
+Anschließend kann der SSD verwendet werden. Dazu wurde in dieser Arbeit die Skripte in SSD_Dateien verwendet. Wichtig dabei ist zum einen der Pfad, an welcher Stelle sich die zu analysierenden Dateien befinden und wo die Ergebnisse gespeichert werden. Sind die Pfade nicht korrekt, stürzen die Programme ab.
+
+
+<b> Analyse der Ergebnisse</b>
+Nachdem der SSD ausgeführt wurde, steht eine json-Datei zur Verfügung, in der alle Detektionen enthalten sind. Wurde die Ordnerstruktur beim Sammeln der Daten entsprechend angelegt, können nun die Skripte im Ordner Auswertungen ausgeführt werden. Diese analysieren abhängig vom jeweiligen SSD-Algorithmus die Ergebnisse und erzeugen dabei die entsprechenden Diagramme und Tabellen.
