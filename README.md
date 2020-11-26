@@ -122,7 +122,7 @@ Auf der Webseite muss dann die modifizierte Map und ein Fahrzeug ausgewählt wer
 Bevor allerdeing die Daten gesammelt werden können. muss die entsprechende Ordnerstruktur gegeben sein. Dabei sind manche Ordner davon Abhängig, welche Sensoren für das Fahrzeug verwendet werden und welche Eventhandler in Sub2D.py definiert werden.
 
 --Dateien
-     |
+     
      |-- 2DGrountTruth
      
      |-- 3DGroundTruth
