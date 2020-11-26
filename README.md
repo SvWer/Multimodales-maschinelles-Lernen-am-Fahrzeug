@@ -124,11 +124,17 @@ Bevor allerdeing die Daten gesammelt werden können. muss die entsprechende Ordn
 --Dateien
      |
      |-- 2DGrountTruth
+     
      |-- 3DGroundTruth
+     
      |-- SSD_Detections
+     
      |-- depth_img
+     
      |-- lidar
+     
      |-- main_img
+     
      |-- seg_img
 
 
